@@ -18,6 +18,9 @@ app.set("views", path.join(__dirname, "resources/views"));
 // http logger
 app.use(morgan("combined"));
 
+// static file
+app.use(express.static(path.join(__dirname, "public"))); 
+
 // route
 app.get("/", (req, res) => {
   res.render("home");

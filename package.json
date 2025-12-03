@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debugger": "nodemon --inspect src/index.js"
+    "debugger": "nodemon --inspect src/index.js",
+    "watch": "sass --watch src/resources/scss:src/public/css"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "express": "^5.2.1",
     "express-handlebars": "^8.0.3",
     "handlebars": "^4.7.8",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "sass": "^1.94.2"
   }
 }
