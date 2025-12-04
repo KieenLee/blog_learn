@@ -2,8 +2,13 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
+const e = require("express");
 const app = express();
 const port = 3005;
+
+// middleware to parse urlencoded bodies
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // template engine
 app.engine(
@@ -19,7 +24,7 @@ app.set("views", path.join(__dirname, "resources/views"));
 app.use(morgan("combined"));
 
 // static file
-app.use(express.static(path.join(__dirname, "public"))); 
+app.use(express.static(path.join(__dirname, "public")));
 
 // route
 app.get("/", (req, res) => {
@@ -31,8 +36,12 @@ app.get("/news", (req, res) => {
 });
 
 app.get("/search", (req, res) => {
-  console.log(req.query);
   res.render("search");
+});
+
+app.post("/search", (req, res) => {
+  console.log(req.body);
+  res.send("post - search - ok");
 });
 
 app.listen(port, () => {
