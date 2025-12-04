@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const handlebars = require("express-handlebars");
+const route = require("./routes");
 const e = require("express");
 const app = express();
 const port = 3005;
@@ -26,23 +27,8 @@ app.use(morgan("combined"));
 // static file
 app.use(express.static(path.join(__dirname, "public")));
 
-// route
-app.get("/", (req, res) => {
-  res.render("home");
-});
-
-app.get("/news", (req, res) => {
-  res.render("news");
-});
-
-app.get("/search", (req, res) => {
-  res.render("search");
-});
-
-app.post("/search", (req, res) => {
-  console.log(req.body);
-  res.send("post - search - ok");
-});
+// route init
+route(app);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
